@@ -36,11 +36,11 @@ private NavController nav;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        nav= Navigation.findNavController(getActivity(),R.id.nav_host_fragment_container);
-        btn2 =view.findViewById(R.id.secondFra);
+        btn2 =view.findViewById(R.id.secondFragment);
        btn2.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               nav.navigate(R.id.secondFra);
+               nav.navigate(R.id.secondFragment);
            }
        });
     }

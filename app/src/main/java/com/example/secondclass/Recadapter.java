@@ -35,7 +35,9 @@ public class Recadapter extends RecyclerView.Adapter<Recadapter.ViewHolder>{
         Picasso.get().load(arraypro.get(position).getImage()).into(holder.pkimg);
         holder.pkname.setText(arraypro.get(position).getName());
     }
-
+public void setClickListener(View.OnClickListener itemListener){
+        this.itemListener=itemListener;
+}
     @Override
     public int getItemCount() {
 
@@ -51,7 +53,7 @@ public class Recadapter extends RecyclerView.Adapter<Recadapter.ViewHolder>{
             pkimg = itemview.findViewById(R.id.img_pk);
             pkname =itemview.findViewById(R.id.txt_pk);
             itemview.setTag(this);
-
+itemview.setOnClickListener(itemListener);
         }
 
 

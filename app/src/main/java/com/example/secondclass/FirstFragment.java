@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -74,12 +75,24 @@ Recadapter adapter;
             }
         });
     }
+    public View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+            int position= viewHolder.getAdapterPosition();
+            Toast.makeText(getActivity().getApplicationContext(),parray.get(position).getName(),Toast.LENGTH_LONG).show();
+        }
+    };
+
 public void generateView(ArrayList<Pokemon_>parray, View view){
         adapter =new Recadapter(parray,getActivity().getApplicationContext());
     LinearLayoutManager manager =new LinearLayoutManager(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL,false);
     RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
     recyclerView.setLayoutManager(manager);
     recyclerView.setAdapter(adapter);
+    adapter.setClickListener(onClickListener);
+
+
 }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
