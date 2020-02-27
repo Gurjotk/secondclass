@@ -14,6 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class secondFragment extends Fragment {
@@ -25,8 +29,11 @@ public class secondFragment extends Fragment {
     // TODO: Rename and change types of parameters
     //private String mParam1;
    // private String mParam2;
-Button btn2;
+
 private NavController nav;
+ImageView imgv;
+TextView txt_pname,txt_desc,txt_type,txt_height,txt_Weight,txt_ability;
+
 
     public secondFragment() {
         // Required empty public constructor
@@ -36,13 +43,18 @@ private NavController nav;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        nav= Navigation.findNavController(getActivity(),R.id.nav_host_fragment_container);
-        btn2 =view.findViewById(R.id.secondFragment);
-       btn2.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               nav.navigate(R.id.secondFragment);
-           }
-       });
+       Pokemon_ p= getArguments().getParcelable("data");
+
+       imgv= view.findViewById(R.id.pkd_imgv);
+       txt_pname= view.findViewById(R.id.pkd_txtpname);
+       txt_desc= view.findViewById(R.id.pkd_txtpdesc);
+       txt_type = view.findViewById(R.id.pkd_txtptype);
+       txt_ability= view.findViewById(R.id.pkd_txtpability);
+       txt_height= view.findViewById(R.id.pkd_txtpheight);
+       txt_Weight= view.findViewById(R.id.pkd_txtpweight);
+
+       genView(p);
+
     }
 
     @Override
@@ -59,6 +71,15 @@ private NavController nav;
         super.onAttach(context);
 
     }
+public void genView(Pokemon_ p){
+    Picasso.get().load(p.getImage()).into(imgv);
+    txt_pname.setText(p.getName());
+    txt_desc.setText(p.getDescription());
+    txt_type.setText("type:"+p.getType());
+    txt_ability.setText("ability:"+p.getAbility());
+    txt_Weight.setText("Height:"+p.getWeight());
+    txt_height.setText("Weight:"+p.getHeight());
 
+}
 
 }

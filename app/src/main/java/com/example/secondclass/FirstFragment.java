@@ -47,7 +47,8 @@ Recadapter adapter;
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-     // nav= Navigation .findNavController(getActivity(),R.id.firstFragment);
+
+     nav= Navigation .findNavController(getActivity(),R.id.nav_host_fragment_container);
    // btn_go= view.findViewById(R.id.firstFragment);
     //btn_go.setOnClickListener(new View.OnClickListener() {
     //    @Override
@@ -81,6 +82,9 @@ Recadapter adapter;
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
             int position= viewHolder.getAdapterPosition();
             Toast.makeText(getActivity().getApplicationContext(),parray.get(position).getName(),Toast.LENGTH_LONG).show();
+Bundle b= new Bundle();
+b.putParcelable("data",parray.get(position));
+nav.navigate(R.id.secondFragment,b);
         }
     };
 
